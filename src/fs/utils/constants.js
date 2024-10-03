@@ -7,6 +7,7 @@ const ERROR_CODE_CP_EXIST = 'ERR_FS_CP_EEXIST';
 const WRONG_FILE_TXT = 'wrongFilename.txt';
 const PROPER_FILE_MD = 'properFilename.md';
 const FILE_OF_DELETE = 'fileToRemove.txt';
+const FILE_OF_READ = 'fileToRead.txt';
 
 export {
     CONTENT_OF_CREATED_FILE,
@@ -17,5 +18,6 @@ export {
     ERROR_CODE_CP_EXIST,
     WRONG_FILE_TXT,
     PROPER_FILE_MD,
-    FILE_OF_DELETE
+    FILE_OF_DELETE,
+    FILE_OF_READ
 };
