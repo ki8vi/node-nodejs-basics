@@ -1,4 +1,3 @@
-
 const parseEnv = () => {
     const result = [];
     for(let key in process.env) {
