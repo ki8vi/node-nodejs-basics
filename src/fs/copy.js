@@ -1,14 +1,16 @@
-import { ERROR_MESSAGE, TARGET_FOLDER_NAME, COPIED_FOLDER_NAME, ERROR_CODE_CP_EXIST } from './utils/constants.js';
-import { determinePathToFile } from './utils/determinePathToFile.js';
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { ERROR_MESSAGE, TARGET_FOLDER_NAME, COPIED_FOLDER_NAME, ERROR_CODE_CP_EXIST } from '../utils/constants.js';
+import { getDirname } from '../utils/determinePath.js';
 
-const sourcePath = determinePathToFile(import.meta.url, TARGET_FOLDER_NAME);
-const destinationPath = determinePathToFile(import.meta.url, COPIED_FOLDER_NAME);
+const __dirname = getDirname(import.meta.url);
+const sourcePath = path.resolve(__dirname, TARGET_FOLDER_NAME);
+const destinationPath = path.resolve(__dirname, COPIED_FOLDER_NAME);
 
 const copy = async () => {
 
     try {
-        const contentOfFolder = await fs.readdir(determinePathToFile(import.meta.url, ''), { withFileTypes: true, recursive: true });
+        const contentOfFolder = await fs.readdir(__dirname, { withFileTypes: true, recursive: true });
         const isSourceFolderExist = contentOfFolder.some((el) => el.name === TARGET_FOLDER_NAME && el.isDirectory());
         
         if(!isSourceFolderExist) {
