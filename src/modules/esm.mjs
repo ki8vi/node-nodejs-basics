@@ -1,8 +1,8 @@
 import path from "node:path";
 import { release, version } from "node:os";
 import { createServer as createServerHttp } from "node:http";
+import { createRequire } from "node:module";
 import { getDirname, getFilename } from "../utils/determinePath.js";
-import { readFile } from "node:fs/promises";
 
 import "./files/c.js";
 
@@ -10,17 +10,14 @@ const random = Math.random();
 
 let unknownObject;
 
+const require = createRequire(import.meta.url);
 const __dirname = getDirname(import.meta.url);
 const __filename = getFilename(import.meta.url);
 
 if (random > 0.5) {
-  unknownObject = JSON.parse(
-    await readFile(path.resolve(__dirname, "./files/a.json"))
-  );
+  unknownObject = require(path.resolve(__dirname, "./files/a.json"));
 } else {
-  unknownObject = JSON.parse(
-    await readFile(path.resolve(__dirname, "./files/b.json"))
-  );
+  unknownObject = require(path.resolve(__dirname, "./files/b.json"));
 }
 
 console.log(`Release ${release()}`);
