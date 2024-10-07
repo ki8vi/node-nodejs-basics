@@ -5,7 +5,7 @@ import { createGunzip } from 'node:zlib';
 import { getDirname } from '../utils/determinePath.js';
 
 const __dirname = getDirname(import.meta.url);
-const pathToTargetFile = resolve(__dirname, 'files', 'fileToCompress.txt2');
+const pathToTargetFile = resolve(__dirname, 'files', 'fileToCompress.txt');
 const pathToCompessedFile = resolve(__dirname, 'files', 'archive.gz');
 
 const decompress = async () => {
